@@ -23,6 +23,10 @@ if (argv.n){
 } else {
     lat = undefined;
 }
+if (lat == undefined){
+    console.log('Latitude must be in range.')
+    process.exit(1);
+}
 
 let long;
 if (argv.e){
@@ -32,8 +36,14 @@ if (argv.e){
 } else {
     long = undefined;
 }
+if (long == undefined){
+    console.log("Longitude must be in range.")
+    process.exit(1);
+}
 
 const timezone = argv.z ?? moment.tz.guess();
+
+
 
 
 const url = "https://api.open-meteo.com/v1/forecast?latitude=" + lat + "&longitude=" + long + "&daily=precipitation_hours&current_weather=true&timezone=" + timezone;
@@ -42,12 +52,13 @@ const url = "https://api.open-meteo.com/v1/forecast?latitude=" + lat + "&longitu
 const response = await fetch(url);
 const data = await response.json();
 
-
 // j flag
 if (argv.j){
     console.log(JSON.stringify(data, null, 2));
     process.exit(0);
 }
+
+
 
 // response text
 
