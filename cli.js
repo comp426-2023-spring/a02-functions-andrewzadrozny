@@ -25,7 +25,7 @@ if (argv.n){
 }
 if (lat == undefined){
     console.log('Latitude must be in range.')
-    process.exit(1);
+    process.exit(0);
 }
 
 let long;
@@ -38,7 +38,7 @@ if (argv.e){
 }
 if (long == undefined){
     console.log("Longitude must be in range.")
-    process.exit(1);
+    process.exit(0);
 }
 
 const timezone = argv.z ?? moment.tz.guess();
